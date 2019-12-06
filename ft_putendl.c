@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/30 13:32:40 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/10/30 13:32:44 by vlobunet         ###   ########.fr       */
+/*   Created: 2017/12/05 16:00:12 by vlobunet          #+#    #+#             */
+/*   Updated: 2017/12/05 16:00:14 by vlobunet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_putendl(char const *s)
 {
-	if (s != NULL)
-		ft_putstr(s);
+	ft_putstr((char *)s);
 	ft_putchar('\n');
 }

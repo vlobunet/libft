@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   get_host_name.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vbudnik <vbudnik@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 16:02:08 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/12/05 16:02:09 by vlobunet         ###   ########.fr       */
+/*   Created: 2019/06/01 19:46:58 by vbudnik           #+#    #+#             */
+/*   Updated: 2019/06/01 19:47:01 by vbudnik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnew(size_t size)
+char	*get_host_name(void)
 {
-	char	*newmem;
+	char	str[128];
 
-	newmem = (char *)malloc(size + 1);
-	if (newmem == NULL)
+	if (gethostname(str, sizeof(str)) != -1)
+		return (ft_strndup(str,\
+			(ft_strlen(str) - ft_strlen(ft_strchr(str, '.')))));
+	else
 		return (NULL);
-	ft_bzero(newmem, size + 1);
-	return (newmem);
 }

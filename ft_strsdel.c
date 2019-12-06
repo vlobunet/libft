@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_strsdel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vbudnik <vbudnik@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 16:02:08 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/12/05 16:02:09 by vlobunet         ###   ########.fr       */
+/*   Created: 2019/06/01 19:46:24 by vbudnik           #+#    #+#             */
+/*   Updated: 2019/06/01 19:46:26 by vbudnik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnew(size_t size)
+void	ft_strsdel(char *s1, char *s2, char *s3, char *s4)
 {
-	char	*newmem;
-
-	newmem = (char *)malloc(size + 1);
-	if (newmem == NULL)
-		return (NULL);
-	ft_bzero(newmem, size + 1);
-	return (newmem);
+	ft_strdel(&s1);
+	ft_strdel(&s2);
+	ft_strdel(&s3);
+	ft_strdel(&s4);
 }

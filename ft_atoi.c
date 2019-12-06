@@ -5,90 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/24 22:06:58 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/10/24 22:07:01 by vlobunet         ###   ########.fr       */
+/*   Created: 2018/02/23 18:16:49 by vlobunet          #+#    #+#             */
+/*   Updated: 2019/06/01 19:45:39 by vbudnik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_norm(char *str)
+int		ft_atoi(const char *str)
 {
-	int	x;
-	int	size;
-
-	x = 0;
-	size = ft_strlen(str);
-	if (str[0] == '-' || str[0] == '+')
-		x = 1;
-	if (size - x < 19 || (size - x == 19 && str[size - 1] <= '7'))
-		return (str);
-	else
-	{
-		if (str[0] == '-')
-			return ("0");
-		else
-			return ("-1");
-	}
-}
-
-static char	*f_strcpy(char *dest, const char *src)
-{
-	char	*s;
-
-	s = dest;
-	while (ft_if_space(*src))
-		src++;
-	if (*src == '-')
-		*dest++ = *src++;
-	else if (*src == '+')
-		*dest++ = *src++;
-	while (*src >= '0' && *src <= '9')
-		*dest++ = *src++;
-	*dest = '\0';
-	return (ft_norm(s));
-}
-
-static char	*f_strdup(const char *s)
-{
-	char	*str;
-	int		i;
+	int i;
+	int nbr;
+	int neg;
 
 	i = 0;
-	while (ft_if_space(s[i]))
-		i++;
-	str = (char*)malloc(sizeof(char) * (ft_strlen(s) - i));
-	if (str == NULL)
-		return (NULL);
-	else
-		return (f_strcpy(str, s));
-}
-
-int			ft_atoi(const char *str)
-{
-	int		n;
-	int		flag;
-	char	*strnew;
-
-	n = 0;
-	flag = 0;
-	if (*str == '\0')
+	nbr = 0;
+	neg = 0;
+	if (!str)
 		return (0);
-	strnew = f_strdup(str);
-	if (*strnew == '-')
+	while (str[i] && ((str[i] == ' ') || (str[i] == '\t') || (str[i] == '\n')
+			|| (str[i] == '\v') || (str[i] == '\f') || (str[i] == '\r')))
+		++i;
+	if (str[i] && str[i] == '-')
+		neg = 1;
+	if (str[i] && (str[i] == '+' || str[i] == '-'))
+		++i;
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		flag = 1;
-		strnew++;
+		nbr *= 10;
+		nbr += ((int)str[i] - '0');
+		++i;
 	}
-	else if (*strnew == '+')
-		strnew++;
-	while (*strnew >= '0' && *strnew <= '9')
-	{
-		n = n * 10 + (*strnew - '0');
-		strnew++;
-	}
-	if (flag)
-		return (-n);
-	else
-		return (n);
+	if (neg)
+		nbr = -nbr;
+	return (nbr);
 }

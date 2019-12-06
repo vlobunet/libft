@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   get_cursor.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 15:59:19 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/12/05 15:59:19 by vlobunet         ###   ########.fr       */
+/*   Created: 2018/08/23 19:59:38 by vlobunet          #+#    #+#             */
+/*   Updated: 2018/08/23 19:59:40 by vlobunet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t len)
+int	get_cursor_y(void)
 {
-	char *srcnew;
-	char *dstnew;
+	char	bff[20];
+	int		ret;
 
-	srcnew = (char*)src;
-	dstnew = (char*)dest;
-	if (srcnew < dstnew)
-	{
-		srcnew = srcnew + len - 1;
-		dstnew = dstnew + len - 1;
-		while (len > 0)
-		{
-			*dstnew-- = *srcnew--;
-			len--;
-		}
-	}
-	else
-	{
-		while (len > 0)
-		{
-			*dstnew++ = *srcnew++;
-			len--;
-		}
-	}
-	return (dest);
+	ft_putstr("\033[6n");
+	ret = read(0, bff, 20);
+	bff[ret] = '\0';
+	ret = ft_atoi(&bff[2]);
+	return (ret);
+}
+
+int	get_cursor_x(void)
+{
+	char	bff[20];
+	int		ret;
+
+	ft_putstr("\033[6n");
+	ret = read(0, bff, 20);
+	bff[ret] = '\0';
+	ret = ft_atoi(&bff[2 + ft_intlen(ft_atoi(&bff[2])) + 1]);
+	return (ret);
 }

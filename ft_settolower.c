@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_settolower.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 15:59:19 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/12/05 15:59:19 by vlobunet         ###   ########.fr       */
+/*   Created: 2019/10/19 14:49:04 by vlobunet          #+#    #+#             */
+/*   Updated: 2019/10/19 14:49:06 by vlobunet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t len)
+char	*ft_settolower(char *crs)
 {
-	char *srcnew;
-	char *dstnew;
+	char	*str;
+	int		i;
 
-	srcnew = (char*)src;
-	dstnew = (char*)dest;
-	if (srcnew < dstnew)
+	i = 0;
+	if (crs && *crs)
 	{
-		srcnew = srcnew + len - 1;
-		dstnew = dstnew + len - 1;
-		while (len > 0)
+		str = ft_strdup(crs);
+		while (crs[i])
 		{
-			*dstnew-- = *srcnew--;
-			len--;
+			str[i] = ft_tolower(crs[i]);
+			i++;
 		}
+		return (str);
 	}
-	else
-	{
-		while (len > 0)
-		{
-			*dstnew++ = *srcnew++;
-			len--;
-		}
-	}
-	return (dest);
+	return (NULL);
 }

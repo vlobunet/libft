@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_isallnum.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 15:59:19 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/12/05 15:59:19 by vlobunet         ###   ########.fr       */
+/*   Created: 2019/10/19 14:47:37 by vlobunet          #+#    #+#             */
+/*   Updated: 2019/10/19 14:47:39 by vlobunet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t len)
+int	if_isallnum(char *str)
 {
-	char *srcnew;
-	char *dstnew;
+	int	i;
 
-	srcnew = (char*)src;
-	dstnew = (char*)dest;
-	if (srcnew < dstnew)
+	i = 0;
+	while (str[i])
 	{
-		srcnew = srcnew + len - 1;
-		dstnew = dstnew + len - 1;
-		while (len > 0)
-		{
-			*dstnew-- = *srcnew--;
-			len--;
-		}
+		if (!ft_isalnum(str[i]))
+			return (0);
+		i++;
 	}
-	else
-	{
-		while (len > 0)
-		{
-			*dstnew++ = *srcnew++;
-			len--;
-		}
-	}
-	return (dest);
+	return (1);
 }

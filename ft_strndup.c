@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 15:59:19 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/12/05 15:59:19 by vlobunet         ###   ########.fr       */
+/*   Created: 2018/04/10 18:35:08 by vlobunet          #+#    #+#             */
+/*   Updated: 2019/06/01 19:45:59 by vbudnik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t len)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	char *srcnew;
-	char *dstnew;
+	char	*tmp;
 
-	srcnew = (char*)src;
-	dstnew = (char*)dest;
-	if (srcnew < dstnew)
-	{
-		srcnew = srcnew + len - 1;
-		dstnew = dstnew + len - 1;
-		while (len > 0)
-		{
-			*dstnew-- = *srcnew--;
-			len--;
-		}
-	}
-	else
-	{
-		while (len > 0)
-		{
-			*dstnew++ = *srcnew++;
-			len--;
-		}
-	}
-	return (dest);
+	if (!s1)
+		return (NULL);
+	if (!(tmp = ft_strnew(n)))
+		return (NULL);
+	ft_strncpy(tmp, s1, n);
+	return (tmp);
 }

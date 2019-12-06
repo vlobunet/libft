@@ -3,51 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vlobunet <vlobunet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 11:40:02 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/10/30 11:40:07 by vlobunet         ###   ########.fr       */
+/*   Updated: 2018/08/14 21:30:35 by vlobunet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*getword(char const *str, char sumb, size_t *point)
+static int		ft_cnt_parts(const char *s, char c)
 {
-	size_t	i;
+	int		cnt;
+	int		in_substring;
 
-	while (str[*point] == sumb)
-		*point = *point + 1;
-	i = *point;
-	while (str[*point])
+	in_substring = 0;
+	cnt = 0;
+	while (s && *s != '\0')
 	{
-		if (str[*point] == sumb)
-			break ;
-		*point = *point + 1;
+		if (in_substring == 1 && *s == c)
+			in_substring = 0;
+		if (in_substring == 0 && *s != c)
+		{
+			in_substring = 1;
+			cnt++;
+		}
+		s++;
 	}
-	return (ft_strsub(str, i, *point - i));
+	return (cnt);
 }
 
-char		**ft_strsplit(char const *s, char c)
+static int		ft_wlen(const char *s, char c)
 {
-	int		col;
-	char	**str;
-	int		i;
-	size_t	point;
+	int		len;
 
-	i = 0;
-	point = 0;
-	if (s == NULL)
+	len = 0;
+	while (*s != c && *s != '\0')
+	{
+		len++;
+		s++;
+	}
+	return (len);
+}
+
+char			**ft_strsplit(char const *s, char c)
+{
+	char	**t;
+	int		nb_word;
+	int		index;
+
+	if (!s || !*s)
 		return (NULL);
-	col = ft_colword(s, c);
-	str = (char**)malloc(sizeof(char*) * (col + 1));
-	if (str == NULL)
+	index = 0;
+	nb_word = ft_cnt_parts((const char *)s, c);
+	t = (char **)malloc(sizeof(*t) * (nb_word + 1));
+	if (t == NULL)
 		return (NULL);
-	if (c == '\0')
-		str[i] = getword(s, c, &point);
-	else
-		while (col--)
-			str[i++] = getword(s, c, &point);
-	str[i] = NULL;
-	return (str);
+	while (nb_word--)
+	{
+		while (*s == c && *s != '\0')
+			s++;
+		t[index] = ft_strsub((const char *)s, 0, ft_wlen((const char *)s, c));
+		if (t[index] == NULL)
+			return (NULL);
+		s = s + ft_wlen(s, c);
+		index++;
+	}
+	t[index] = NULL;
+	return (t);
 }

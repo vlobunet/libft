@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/25 13:35:13 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/10/25 13:35:25 by vlobunet         ###   ########.fr       */
+/*   Created: 2017/12/05 16:00:29 by vlobunet          #+#    #+#             */
+/*   Updated: 2017/12/05 16:00:30 by vlobunet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 void	ft_putstr(char const *s)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-	if (s != NULL)
+	while (s[i] != '\0')
 	{
-		while (s[i] != '\0')
-		{
-			ft_putchar(s[i]);
-			i++;
-		}
+		ft_putchar(s[i]);
+		i++;
 	}
 }

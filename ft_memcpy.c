@@ -5,24 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/24 15:17:55 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/10/24 15:18:02 by vlobunet         ###   ########.fr       */
+/*   Created: 2017/12/05 15:59:01 by vlobunet          #+#    #+#             */
+/*   Updated: 2017/12/05 15:59:02 by vlobunet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *s1, const void *s2, size_t n)
 {
-	char		*dstnew;
-	const char	*srcnew;
+	size_t			i;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
 
-	dstnew = dst;
-	srcnew = src;
-	while (n > 0)
+	ptr1 = (unsigned char *)s1;
+	ptr2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n)
 	{
-		*dstnew++ = *srcnew++;
-		n = n - 1;
+		ptr1[i] = ptr2[i];
+		i++;
 	}
-	return (dst);
+	return (s1);
 }

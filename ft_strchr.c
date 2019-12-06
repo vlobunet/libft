@@ -5,19 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/24 20:12:49 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/10/24 20:12:53 by vlobunet         ###   ########.fr       */
+/*   Created: 2017/12/05 16:00:47 by vlobunet          #+#    #+#             */
+/*   Updated: 2017/12/05 16:00:52 by vlobunet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char		*ft_strchr(const char *s, int c)
 {
-	while (*s != '\0' && *s != (char)c)
-		s++;
-	if (*s != (char)c)
+	int		i;
+
+	i = 0;
+	if (!s)
 		return (NULL);
-	else
-		return ((char*)s);
+	while (s[i])
+	{
+		if (s[i] == c)
+			return ((char *)s + i);
+		i++;
+	}
+	if (s[i] == '\0' && c == '\0')
+		return ((char *)s + i);
+	return (NULL);
 }

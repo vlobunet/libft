@@ -1,41 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_putstrc_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlobunet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 15:59:19 by vlobunet          #+#    #+#             */
-/*   Updated: 2017/12/05 15:59:19 by vlobunet         ###   ########.fr       */
+/*   Created: 2019/10/26 20:14:35 by vlobunet          #+#    #+#             */
+/*   Updated: 2019/10/26 20:14:38 by vlobunet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t len)
+void	ft_putstrc_fd(char *color, char *str, int fd)
 {
-	char *srcnew;
-	char *dstnew;
-
-	srcnew = (char*)src;
-	dstnew = (char*)dest;
-	if (srcnew < dstnew)
-	{
-		srcnew = srcnew + len - 1;
-		dstnew = dstnew + len - 1;
-		while (len > 0)
-		{
-			*dstnew-- = *srcnew--;
-			len--;
-		}
-	}
-	else
-	{
-		while (len > 0)
-		{
-			*dstnew++ = *srcnew++;
-			len--;
-		}
-	}
-	return (dest);
+	ft_putstr_fd(color, fd);
+	ft_putstr_fd(str, fd);
+	ft_putstr_fd("\033[m", fd);
 }
